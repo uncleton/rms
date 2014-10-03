@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<installation>
+	<install>
+		<title>Index Plugin</title>
+		<description><![CDATA[Index Plugin]]></description>
+		<date>1188025211</date>
+		<folder>plug_index</folder>
+		<type>plugins</type>
+		<padd></padd>
+		<pedit></pedit>
+		<pdelete></pdelete>
+		<pview></pview>
+		<papprove></papprove>
+	</install>
+</installation>	

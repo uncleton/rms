@@ -1,0 +1,65 @@
+ <style>
+ 
+ .drinks{
+	 background-color:#66C;
+	 color:#FFF;
+ }
+
+ </style>
+ 
+ <div class="container-fluid main-content">
+ <div class="page-title">
+          <h1>
+            Orders
+          </h1>
+        </div>
+			<div class="row">
+              <div class="col-lg-12">
+                <div class="widget-container">
+                  <div class="heading">
+                    <i class="icon-warning-sign"></i>Pending Orders
+                  </div>
+                  <div class="widget-content padded" id="orders">
+                  	<fort:loop name="orders">
+                    <div class="alert alert-{type} f-big">
+                      <button class="btn btn-xs btn-success pull-right f-big" onclick="{action}"><i class="icon-ok"></i> OK</button> {name} 
+                      
+                      <div class="badge pull-left f-big" style="margin-right:10px; background:#fff; color:#000; font-family:Arial, Helvetica, sans-serif;">
+                        {table}
+                      </div>
+                      <div class="badge pull-left f-big" style="margin-right:10px; background:#F00;">
+                        {time}
+                      </div>
+                    </div>
+                    </fort>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+</div>
+<script>
+var intervals = 5000;
+var reloader = setInterval("re_load()",intervals);
+function re_load(){
+	$.get("orders-orders_data.html",function(data){
+		if(data){
+			$("#orders").html(data);	
+		}
+	});
+}
+function complete(id){
+	clearInterval(reloader);
+	var r=confirm("Confirm that this order is complete.");
+		if (r==true){
+			top.location.href='?c='+id;
+		}else{
+			reloader = setInterval(re_load(),intervals);
+		}
+}
+function cancel(id){
+	top.location.href='?n='+id;
+}
+
+</script>

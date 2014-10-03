@@ -1,0 +1,197 @@
+<div class="container-fluid main-content"><div class="page-title">
+  <h1>
+    System Settings
+  </h1>
+</div>
+<form action="system-settings.html" id="request-form" class="form-horizontal" method="post" enctype="multipart/form-data">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="icon-reorder"></i>Patient Infromation<br>
+        <!--span class="col-md-2"></span><span style="color:#900" class="required-msg">All Red fields are required.</span-->
+      </div>
+      	
+      <div class="widget-content padded">
+      	<div class="form-group">
+        	
+            <label class="control-label col-md-2"></label>
+            <div class="col-md-7" style="color:#900">
+            	{alert}
+            </div>
+        </div>
+          {layout}
+         
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" align="center">
+	<div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+          <div class="widget-content padded">
+            <div class="col-lg-12">
+                <button class="btn btn-lg btn-block btn-primary-outline" id="submit">Submit</button> 
+            </div>
+          </div>
+        </div>
+    </div> 
+</div>
+</form>
+
+<script>
+if ($('.typeahead').length) {
+    $(".patients.typeahead").typeahead({
+		name:"patient",
+		remote: 'orders-patient/%QUERY.html'
+    }).bind('typeahead:selected', function(obj, datum, name) {      
+        var selected = datum.value.split(" - ") ; 
+		$.getJSON("orders-patient_record/"+selected[0]+".html",function(data,status){
+			if(data){
+				$("#pid_no").val(data.pid_no);
+				$("#lname").val(data.lname).blur(function(){
+					$('#lname').val(data.lname);	
+				});
+				$("#fname").val(data.fname);
+				$("#mname").val(data.mname);
+				$("#bday").val(data.bday);
+				$("#gender").val(data.gender);	
+				$("#doctor").val(data.doctor);
+				$("#location").val(data.location);	
+			}
+		});
+	});
+}
+
+// Assay
+var specimen = {};
+
+$('#add_assay').on("change",function(){
+	if(!$("#"+$(this).val()).length){
+		$('.assay_temp').remove();
+		var codetemp = $(this).val().split(":");
+		var name = $('#add_assay :selected').text();
+		//var sid = codetemp[1];
+		var specimen_input="";
+		var assay_type="1";
+		if(typeof codetemp[4] !="undefined"){
+			var codetemp0 = codetemp[0].split(".");
+			var codetemp1 = codetemp[1].split(".");
+			var codetemp2 = codetemp[2].split(".");
+			var codetemp3 = codetemp[3].split(".");
+			
+			for(n=0; n<codetemp0.length; n++){
+				for(i=1; i<=codetemp2[n]; i++){
+						specimen[codetemp1[n]+i] = codetemp1[n]+i;
+						specimen_input +='<input name="specimen[]" class="specimen-input" type="hidden"  value="'+specimen[codetemp1[n]+i]+'"><input name="specimen_code[]" type="hidden" id="'+codetemp0[n]+'" value="'+codetemp0[n]+'"><input name="specimen_name[]" type="hidden" value="'+codetemp3[n]+'"><input name="specimen_ids[]" type="hidden" value="">';
+						// add collection date
+						if(!$("#specimen_div ."+specimen[codetemp1[n]+i]).length){
+							var specimen_dates ='<div class="form-group '+specimen[codetemp1[n]+i]+'" rel="'+specimen[codetemp1[n]+i]+'"><label class="control-label col-md-2" style="text-transform:capitalize">'+codetemp1[n].replace(/-/g," ")+' '+i+' date/time</label><div class="col-md-3"><div class="input-group date datepicker" data-date-autoclose="true" data-date-format="yyyy-mm-dd"><input class="form-control" type="text" name="collection_date[]" value="{date-now}"><span class="input-group-addon"><i class="icon-calendar"></i></span></input>'
+							+'</div></div><div class="col-md-3"><div class="input-group bootstrap-timepicker"><input class="form-control timepicker-default" type="text" name="collection_time[]"><input name="specimen_colelction_map[]" type="hidden" value="'+specimen[codetemp1[n]+i]+'"><span class="input-group-addon"><i class="icon-time"></i></span></input></div></div></div>'
+							$("#specimen_div").append(specimen_dates);
+							$(".timepicker-default").timepicker();
+							$('.datepicker').datepicker();
+						}
+						$('#assay_test_div').css('display','block');	
+						$('#test_validate').val("1");
+						$('label[for="test_validate"]').remove();
+				}
+			}
+			codetemp[0]=codetemp[4];
+			assay_type = "2";	
+		}else{
+			for(i=1; i<=codetemp[2]; i++){
+						specimen[codetemp[1]+i] = codetemp[1]+i;
+						specimen_input +='<input name="specimen[]" class="specimen-input" type="hidden" value="'+specimen[codetemp[1]+i]+'"><input name="specimen_code[]" type="hidden" value="'+codetemp[0]+'"><input name="specimen_name[]" type="hidden" value="'+name+'"><input name="specimen_ids[]" type="hidden" value="">';
+						// add collection date
+						if(!$("#specimen_div ."+specimen[codetemp[1]+i]).length){
+							var specimen_dates ='<div class="form-group '+specimen[codetemp[1]+i]+'" rel="'+specimen[codetemp[1]+i]+'"><label class="control-label col-md-2" style="text-transform:capitalize">'+codetemp[1].replace(/-/g," ")+' '+i+' date/time</label><div class="col-md-3"><div class="input-group date datepicker" data-date-autoclose="true" data-date-format="yyyy-mm-dd"><input class="form-control" type="text" name="collection_date[]" value="{date-now}"><span class="input-group-addon"><i class="icon-calendar"></i></span></input>'
+							+'</div></div><div class="col-md-3"><div class="input-group bootstrap-timepicker"><input class="form-control timepicker-default" type="text" name="collection_time[]"><input name="specimen_colelction_map[]" type="hidden" value="'+specimen[codetemp[1]+i]+'"><span class="input-group-addon"><i class="icon-time"></i></span></input></div></div></div>'
+							$("#specimen_div").append(specimen_dates);
+							$(".timepicker-default").timepicker();
+							$('.datepicker').datepicker();
+						}
+						$('#assay_test_div').css('display','block');	
+						$('#test_validate').val("1");
+						$('label[for="test_validate"]').remove();
+				}	
+		}
+		
+		
+		
+		name = '<div class="col-md-10" style="margin-bottom:5px;"><div class="col-md-8" style="color:#900;">'+name+'<input name="assay[]" type="hidden" id="'+codetemp[0]+'" value="'+codetemp[0]+':'+assay_type+'">'+specimen_input+' <span class="btn btn-xs btn-default-outline" style="margin:0 0 0 10px;">Remove</span></div></div>';
+		$('#assay_test').append(name);
+		$('#assay_test span').click(function(){
+			// Clean Array
+			specimen = {};
+			
+			$(this).parent().parent().remove();
+			$("#assay_test .specimen-input").each(function(){
+				specimen[$(this).val()] = $(this).val();
+			});
+			$('#assay_test_div').css('display','block');
+			if(!$('#assay_test input').length){
+				$('#assay_test_div').css('display','none');
+				$('#test_validate').val("");	
+			}
+			
+			// Clean Dates
+			$("#specimen_div .form-group").each(function(){
+				if( typeof specimen[$(this).attr("rel")] == "undefined"){
+						$(this).remove();
+				}
+			});
+			
+		});
+	}
+});
+
+
+
+
+function del(id){
+	
+}
+$("#request-form").validate({
+      rules: {
+        pid_no: "required",
+        lname: "required",
+		fname: "required",
+		mname: "required",
+        bday: "required",
+		gender: "required",
+		test_validate: "required"
+      },
+      messages: {
+        pid_no: "",
+        lname: "",
+		fname: "",
+		mname: "",
+		bday: "",
+		gender: "",
+		test_validate: "You forgot to select an Assay to test"
+      }
+});
+
+$('#assay_test span').click(function(){
+		// Clean Array
+		specimen = {};
+		
+		$(this).parent().parent().remove();
+		$("#assay_test .specimen-input").each(function(){
+			specimen[$(this).val()] = $(this).val();
+		});
+		$('#assay_test_div').css('display','block');
+		if(!$('#assay_test input').length){
+			$('#assay_test_div').css('display','none');
+			$('#test_validate').val("");	
+		}
+		
+		// Clean Dates
+		$("#specimen_div .form-group").each(function(){
+			if( typeof specimen[$(this).attr("rel")] == "undefined"){
+					$(this).remove();
+			}
+	});		
+});
+</script>

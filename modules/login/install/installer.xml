@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<installation>
+	<install>
+		<title>Login Module</title>
+		<description><![CDATA[Login Form]]></description>
+		<date>1188025211</date>
+		<folder>login</folder>
+		<content></content>
+		<type>modules</type>
+		<tag></tag>
+		<padd>1</padd>
+		<pedit>1</pedit>
+		<pdelete>1</pdelete>
+		<pview>1</pview>
+		<papprove>1</papprove>
+		<page file="index">Login Form</page>
+	</install>
+</installation>	
+

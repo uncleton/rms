@@ -1,0 +1,229 @@
+<div class="container-fluid main-content"><div class="page-title">
+  <h1>
+    Package Manager
+  </h1>
+</div>
+<form action="inventory-add_package.html" id="request-form" class="form-horizontal" method="post" enctype="multipart/form-data">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="icon-reorder"></i>Modify {prpduct}<br>
+        <!--span class="col-md-2"></span><span style="color:#900" class="required-msg">All Red fields are required.</span-->
+      </div>
+      	
+      <div class="widget-content padded">
+      	<div class="form-group">
+        	
+            <label class="control-label col-md-2"></label>
+            <div class="col-md-7" style="color:#900">
+            	{error}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Product Name</label>
+          <div class="col-md-7">
+           <input class="form-control" placeholder="Value" value="{name}" id="name" name="name" type="text">
+           <input class="form-control" placeholder="Value" value="{id}" name="id" type="hidden">
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Photo</label>
+            {photo}
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Category</label>
+          <div class="col-md-7">
+          	<select class="form-control" id="categories" name="categories">
+                {categories}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Price</label>
+          <div class="col-md-5">
+           <input class="form-control" placeholder="Value" value="{price}" id="price" name="price" type="text">
+          </div>
+          <!--div class="col-md-2" style="font-size:12px">
+           Price Estimate<br> @100% = <span id="p100"></span> <br>@80% = <span id="p80"></span>
+          </div-->
+        </div>
+        <!--div class="form-group">
+          <label class="control-label col-md-2">Cost</label>
+          <div class="col-md-7">
+           <input class="form-control" placeholder="Product Cost" value="{cost}" id="cost" name="cost" type="text" readonly="readonly">
+          </div>
+        </div-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="icon-reorder"></i>Product Ordering Steps - 
+        <span style="font-size:12px; color:#000">Define the Steps and Qty of products to be selected when ordering.</span>
+      </div>
+      	
+      <div class="widget-content padded">
+        
+        <div id="package-group-form">
+            {steps}
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label col-md-2"></label>
+          <div class="col-md-1">
+              <input class="form-control" placeholder="Qty" id="qty">
+          </div>
+          <div class="col-md-2">
+              <select class="form-control" id="steps" >
+                <option value="1">Step 1</option>
+                <option value="2">Step 2</option>
+                <option value="3">Step 3</option>
+                <option value="4">Step 4</option>
+                <option value="5">Step 5</option>
+                <option value="6">Step 6</option>
+                <option value="7">Step 7</option>
+                <option value="8">Step 8</option>
+                <option value="9">Step 9</option>
+                <option value="10">Step 10</option>
+              </select>
+          </div>
+          
+          <div class="col-md-1">
+              <a class="btn btn-success" href="Javascript:void(0);" onclick="add_steps()">Add</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="icon-reorder"></i>Products<br>
+        <!--span class="col-md-2"></span><span style="color:#900" class="required-msg">All Red fields are required.</span-->
+      </div>
+      	
+      <div class="widget-content padded">
+        
+        <div id="package-form">
+            {ing_list}
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label col-md-2"></label>
+          <div class="col-md-4">
+              <select class="form-control" id="packages" >
+                {packages}
+              </select>
+          </div>
+          <div class="col-md-2">
+              <select class="form-control" id="group" >
+              	{groups}
+              </select>
+          </div>
+          
+          <div class="col-md-1">
+              <a class="btn btn-success" href="Javascript:void(0);" onclick="add()">Add</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" align="center">
+	<div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+          <div class="widget-content padded">
+          	<label class="control-label col-md-1"></label>
+          	<div class="col-lg-4">
+                <a class="btn btn-lg btn-block btn-default" href="inventory-packages.html">Back To Package List</a> 
+            </div>
+            <div class="col-lg-4">
+                <button class="btn btn-lg btn-block btn-primary-outline" id="submit">Save</button> 
+            </div>
+          </div>
+        </div>
+    </div> 
+</div>
+</form>
+
+<script>
+
+$("#request-form").validate({
+      rules: {
+        name: "required",
+		price: "required"
+      },
+      messages: {
+        username: "Please enter Product Name",
+		price: "Please enter a price"
+      }
+});
+
+function add_steps(){
+	
+	var qty = $('#qty').val();
+	if(qty){
+		var val = $("#steps").val();
+		var name = $("#steps option[value='"+val+"']").text();
+		var count = $('#package-group-form .form-group').length;
+		if(packages){
+			
+			var form = '<div class="form-group"><label class="control-label col-md-2"></label><div class="col-md-3">'
+				   + (count+1) +'. '+name+' - '+qty+' pc/s<input type="hidden" value="'+qty+':'+val+'" name="steps[]">'
+				   +'</div><div class="col-md-4"><a href="Javascript:void(0);" onclick="del_steps(this,\''+val+'\')"><i class="icon-trash"></i> Delete</a></div></div>';
+		}
+		$('#group').append('<option value="'+val+'">'+name+'</option>');
+		$('#package-group-form').append(form);
+	}else{
+		alert('Please enter Quantity');	
+	}
+}
+
+function add(){
+	
+	var packages = $('#packages').val();
+	var name = $("#packages option[value='"+packages+"']").text();
+	var group = $("#group").val();
+	if(group){
+		var group_name = $("#group option[value='"+group+"']").text();
+		var count = $('#package-form .form-group').length;
+		if(packages){
+			ing = packages.split(":");
+			var form = '<div class="form-group"><label class="control-label col-md-2"></label><div class="col-md-3">'
+				   + (count+1) +'. '+name+' - '+group_name+' <input type="hidden" value="'+ing[0]+':'+group+'" name="packages[]">'
+				   +'</div><div class="col-md-4"><a href="Javascript:void(0);" onclick="del(this)"><i class="icon-trash"></i> Delete</a></div></div>';
+		}
+		$('#package-form').append(form);
+	}else{
+		alert('Please add a step to sign this product.');	
+	}
+}
+
+
+function del(obj){
+	//$("#cost").val(parseFloat($("#cost").val())-parseFloat(cost));
+	$(obj).parents('.form-group').remove();
+	//price_est();
+}
+function del_steps(obj,val){
+	$(obj).parents('.form-group').remove();
+	$("#group option[value='"+val+"']").remove();
+}
+price_est();
+function price_est(){
+	var cost = parseFloat($("#cost").val());
+	if(!cost){
+		cost=0;	
+	}
+	var oh = cost + (cost*0.3);
+	$("#p100").html('Php '+(oh+(oh*0.8)));
+	$("#p80").html('Php '+(oh*2));
+}
+</script>

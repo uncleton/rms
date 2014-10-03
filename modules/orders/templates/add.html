@@ -1,0 +1,349 @@
+<form action="orders-add.html" id="request-form" class="form-horizontal" method="post" enctype="multipart/form-data">
+ <div class="container-fluid main-content">
+       
+       <div class="row">
+       		  <div class="col-lg-3">
+              	<div class="widget-container list task-widget fluid-height">
+                	<div class="heading">
+                    	<i class="icon-edit"></i> <span style="color:#333; font-size:12px;">Order Details for</span> {t}
+                    </div>
+                    <div class="widget-content">
+                    	<ul id="orders">
+                    		<li class="np"><label>No Product Added</label></li>
+                    	</ul>
+                        <div class="widget-content padded">
+                        	<div class="form-group" style="border-bottom:#333 1px solid;">
+                              <label  for="name" class="control-label col-md-12">CUSTOMERS INFO <span style="font-size:10px">(Delivery/Pickup)</span> &nbsp; <a class="icon-chevron-sign-right customer-info" style="font-size:18px" href="#" onclick="customer_info()"></a></label>
+                            </div>
+                            <div id="customer-info" style="display:{ci};">
+                                <div class="form-group">
+                                  <label  for="name" class="control-label col-md-12">Customers Name</label>
+                                  <div class="col-md-12">
+                                    <input class="form-control col-md-8" id="name" name="name" type="text" value="{name}">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label  for="name" class="control-label col-md-12">Contact Number</label>
+                                  <div class="col-md-12">
+                                    <input class="form-control col-md-8" id="phone" name="phone" type="text" value="{phone}">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label  for="name" class="control-label col-md-12">Address</label>
+                                  <div class="col-md-12">
+                                    <textarea class="form-control" rows="3" name="address">{address}</textarea>
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-md-12">Pickup Time</label>
+                                    <div class="col-md-12">
+                                      <div class="input-group bootstrap-timepicker">
+                                        <input class="form-control" id="timepicker-24h" type="text" name="time" value="{time}"><span class="input-group-addon"><i class="icon-time"></i></span></input>
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                        <br>
+                        <a href="Javascript:void(0)" onclick="post_orders();" class="btn btn-success pull-right">Submit Order</a> 
+                        <a href="index.html" class="btn btn-danger pull-right">Cancel</a> 
+                        </label>
+                        <br><br><br>
+                        
+                    </div>
+                </div>
+              </div>
+              <div class="col-lg-9">
+                <div class="widget-container fluid-height">
+                  <div class="heading tabs">
+                    <ul class="nav nav-tabs pull-right" data-tabs="tabs" id="tabs">
+                      <li class="active">
+                        <a data-toggle="tab" href="#tab1"><i class="icon-circle"></i><span>Pizza</span></a>
+                      </li>
+                      <li>
+                        <a data-toggle="tab" href="#tab2"><i class="icon-leaf"></i><span>Pasta</span></a>
+                      </li>
+                      <li>
+                        <a data-toggle="tab" href="#tab3"><i class="icon-fire"></i><span>Grill / Meat</span></a>
+                      </li>
+                      <li>
+                        <a data-toggle="tab" href="#tab4"><i class="icon-archive"></i><span>Packages</span></a>
+                      </li>
+                      <li>
+                        <a data-toggle="tab" href="#tab5"><i class="icon-lemon"></i><span>Sides</span></a>
+                      </li>
+                      <li>
+                        <a data-toggle="tab" href="#tab6"><i class="icon-glass"></i><span>Drinks</span></a>
+                      </li>
+                      <li>
+                        <a data-toggle="tab" href="#tab7"><i class="icon-gift"></i><span>Freebies</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="tab-content padded" id="my-tab-content">
+                    <div class="tab-pane active" id="tab1">
+                      <h3>
+                        Pizza Menu
+                      </h3>
+                      <p>
+                        <div class="row">
+                        	<fort:loop name="pizza">
+                            <div  class="col-md-2 pull-left products" onclick="highlight(this)">
+                              <div class="widget-content">
+                              	<a {a}>
+                                    <img src="UserFiles/image/{image}"   />
+                                    <span class="name">{name}</span><br>
+                                    <span class="price">Php {price}</span>
+                                </a>    
+                              </div>
+                            </div>
+                            </fort>
+                        </div>
+                      </p>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                      <h3>
+                        Pasta Menu
+                      </h3>
+                      <p>
+                        <div class="row">
+                        	<fort:loop name="pasta">
+                            <div  class="col-md-2 pull-left products" onclick="highlight(this)">
+                              <div class="widget-content">
+                              	<a {a}>
+                                    <img src="UserFiles/image/{image}"   />
+                                    <span class="name">{name}</span><br>
+                                    <span class="price">Php {price}</span>
+                                </a>    
+                              </div>
+                            </div>
+                            </fort>
+                        </div>
+                      </p>
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                      <h3>
+                        Grill / Meat Menu
+                      </h3>
+                      <p>
+                      	<div class="row">
+                        	<fort:loop name="grill">
+                            <div  class="col-md-2 pull-left products" onclick="highlight(this)">
+                              <div class="widget-content">
+                              	<a {a}>
+                                    <img src="UserFiles/image/{image}"   />
+                                    <span class="name">{name}</span><br>
+                                    <span class="price">Php {price}</span>
+                                </a>    
+                              </div>
+                            </div>
+                            </fort>
+                        </div>
+                      </p>
+                    </div>
+                    <div class="tab-pane" id="tab4">
+                      <h3>
+                        Packages
+                      </h3>
+                      <p>
+                        <div class="row">
+                        	<fort:loop name="package">
+                            <div  class="col-md-2 pull-left products" onclick="highlight(this)">
+                              <div class="widget-content">
+                              	<a {a}>
+                                    <img src="UserFiles/image/{image}"   />
+                                    <span class="name">{name}</span><br>
+                                    <span class="price">Php {price}</span>
+                                </a>    
+                              </div>
+                            </div>
+                            </fort>
+                        </div>
+                      </p>
+                    </div>
+                    <div class="tab-pane" id="tab5">
+                      <h3>
+                        Sides
+                      </h3>
+                      <p>
+                        <div class="row">
+                        	<fort:loop name="sides">
+                            <div  class="col-md-2 pull-left products" onclick="highlight(this)">
+                              <div class="widget-content">
+                              	<a {a}>
+                                    <img src="UserFiles/image/{image}"   />
+                                    <span class="name">{name}</span><br>
+                                    <span class="price">Php {price}</span>
+                                </a>    
+                              </div>
+                            </div>
+                            </fort>
+                        </div>
+                      </p>
+                    </div>
+                    <div class="tab-pane" id="tab6">
+                      <h3>
+                        Drinks
+                      </h3>
+                      <p>
+                        <div class="row">
+                        	<fort:loop name="drinks">
+                            <div  class="col-md-2 pull-left products" onclick="highlight(this)" >
+                              <div class="widget-content">
+                              	<a {a}>
+                                    <img src="UserFiles/image/{image}" />
+                                    <span class="name">{name}</span><br>
+                                    <span class="price">Php {price}</span>
+                                </a>    
+                              </div>
+                            </div>
+                            </fort>
+                        </div>
+                      </p>
+                    </div>
+                    <div class="tab-pane" id="tab7">
+                      <h3>
+                        Freebies
+                      </h3>
+                      <p>
+                        <div class="row">
+                        	<fort:loop name="freebies">
+                            <div  class="col-md-2 pull-left products" onclick="highlight(this)">
+                              <div class="widget-content">
+                              	<a {a}>
+                                    <img src="UserFiles/image/{image}" />
+                                    <span class="name">{name}</span><br>
+                                    <span class="price">Php {price}</span>
+                                </a>    
+                              </div>
+                            </div>
+                            </fort>
+                        </div>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+        
+        
+<div class="modal fade package-popup" id="myModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                        <input id="id" value="" type="hidden" />
+                        <h4 class="modal-title">
+                          
+                        </h4>
+                      </div>
+                      <div class="modal-body">
+                        
+                      </div>
+                      <div class="modal-footer" style="clear:both">
+                        <button class="btn btn-primary" type="button" onclick="add_package();">Save Changes</button><button class="btn btn-default-outline" data-dismiss="modal" type="button">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<input type="hidden" value="{id}" name="id">
+<input type="hidden" value="{table}" name="tbl">
+
+</form>
+
+<script>
+function add(id,obj){
+	$(".np").remove();
+	var groupID = genID();
+	var list = '<li><label>'+$(obj).children('.name').html()+' <a href="Javascript:void(0);" class="btn btn-xs btn-danger-outline pull-right product" onclick="del(this)">Cancel</a></label><input type="hidden" name="products[]" value="'+id+':'+groupID+'"></li>';
+	$("#orders").append(list);
+}
+function del(obj){
+	$(obj).parents('li').remove();
+}
+function post_orders(){
+	//if($('.product').length){
+		var r=confirm("Confirm Order to Continue!");
+		if (r==true){
+			$('#request-form').submit();
+		}
+	//}
+}
+function customer_info(){
+	var obj = $("#customer-info");
+	if(obj.css("display")=='none'){
+		obj.fadeIn("slow");
+		$(".customer-info").removeClass("icon-chevron-sign-right").addClass("icon-chevron-sign-down");	
+	}else{
+		obj.fadeOut("slow");
+		$(".customer-info").removeClass("icon-chevron-sign-down").addClass("icon-chevron-sign-right");	
+	}
+}
+
+function packages(id,name){
+	$(".modal-title").html(name);
+	$("#id").val(id);
+	$.post('orders-packages.html?id='+id,function(data){
+		if(data){
+			$(".modal-body").html(data);
+			$(".modal-body li").click(function(){
+				// Validate
+				var obj = $(this);
+				var qty = $(this).parent("ul").attr("rel");
+				var sqty = $(this).parent("ul").find(".active").length;			
+				if(obj.attr("class")=="active"){
+					obj.addClass("inactive").removeClass("active");
+				}else{
+					if(sqty<qty){
+						obj.addClass("active").removeClass("inactive");
+					}else{
+						alert("You can only select "+qty+". Click the selected product again to remove.");	
+					}		
+				}
+			});	
+			//$(".modal").css("height",$(".modal-dialog").css("height"));
+		}
+	});
+}
+function add_package(){
+	var obj = $(".modal-body");
+	var name = $(".modal-title").html();
+	var id = $("#id").val();
+	
+	// Validate
+	var valid = true;
+	$("#myModal ul").each(function(){
+		var qty = $(this).attr("rel");
+		var sqty = $(this).find(".active").length;
+		if(qty>sqty){
+			valid = false;	
+		}
+	});
+	if(valid){
+		var products = "";
+		var groupID = genID();
+		var comma = "";
+		$("#myModal ul .active").each(function(){
+			products += comma+$(this).find(".name").html()+'<input type="hidden" name="package_products[]" value="'+$(this).attr("id")+':'+groupID+'"> ';
+			comma = ",";
+				
+		});
+		
+		var list = '<li><label>'+name+' <span>' + products + '</span><a href="Javascript:void(0);" class="btn btn-xs btn-danger-outline pull-right product" onclick="del(this)">Cancel</a></label><input type="hidden" name="packages[]" value="'+id+':'+groupID+'"></li>';
+		$("#orders").append(list);
+		$(".np").remove();
+		$("#myModal").modal('hide');
+	}else{
+		alert("You need to select to complete your order before saving.");
+	}
+}
+function genID(){
+   return new Date().getTime();
+};
+function highlight(obj){
+	$(obj).css("border","2px solid #000000");
+	setTimeout(function(obj) {$(".products").css("border","none");}, 1000);
+}
+</script>

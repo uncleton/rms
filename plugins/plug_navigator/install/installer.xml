@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<installation>
+	<install>
+		<title>Main Navigator</title>
+		<description><![CDATA[Navigator Plugin]]></description>
+		<date>1188025211</date>
+		<folder>plug_navigator</folder>
+		<type>plugins</type>
+		<padd>1</padd>
+		<pedit>1</pedit>
+		<pdelete>1</pdelete>
+		<pview>1</pview>
+		<papprove>1</papprove>
+	</install>	
+</installation>	

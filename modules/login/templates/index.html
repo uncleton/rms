@@ -1,0 +1,42 @@
+   	<div class="contentHolder">
+    	<h3 class="pageNameHeader">SIGN IN</h3>
+        <div class="choppingBoard">
+ 	        <img src="{template_url}images/veggies.png" class="productShot veggies" />
+            <img src="{template_url}images/knife.png" class="productShot knife" />
+        	<form action="{urlLogin}/?redirect={url}" name="login" method="post" target="{target}">
+                <table class="signInForm">
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>{alert}</td>
+                    </tr>                	
+                    <tr>
+                        <td><label for="username">E-mail Address:</label></td>
+                        <td><input type="text" id="username" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="subject">Password:</label></td>
+                        <td>
+                            <input type="password" id="password" name="password">
+                            <input type="hidden" name="said" maxlength="100" value="{said}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <ul class="signInButton">
+                                <li><a href="#" onclick="login.submit()" class="button">Login</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="20"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align:right;"><a href="{urlForgot}" class="signInLink">Forgot Password?</a> | <a href="{urlRegister}" class="signInLink">No account yet?</a></td>
+                    </tr>
+                </table>
+			</form>
+            <div class="clearDiv"></div>
+        </div>
+        <div class="choppingBoardBottom"></div>
+    </div>

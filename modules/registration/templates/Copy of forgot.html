@@ -1,0 +1,120 @@
+<style type="text/css">
+<!--
+.styleBox{
+	font:Arial, Helvetica, sans-serif; font-size:19px;
+	width: 235px;
+	padding: 2px;
+	margin: 5px 5px 1px 0;
+}
+.style1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color:#CC3300;
+}
+
+.style2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight:bold;
+}
+
+.style2_err {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.style2link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#666666;
+}
+.style2link a:link { color:#666666; text-decoration:none;}
+.style2link a:visited { color:#666666; text-decoration:none;}
+.style2link a:active { color:#666666; text-decoration:none;}
+.style2link a:hover { color:#666666; text-decoration:none;}
+.style2 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; }
+
+-->
+</style>
+		  <tr>
+			<td height="9" colspan="5" class="bg5"></td>
+		  </tr>
+		  <tr>
+			<td width="11"></td>
+		    <td width="500" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="15" valign="top"><img src="/images/box_top_left.jpg" /></td>
+                <td class="bg6"></td>
+                <td width="15" valign="top"><img src="/images/box_top_right.jpg" /></td>
+              </tr>
+              <tr>
+                <td class="bg7">&nbsp;</td>
+                <td bgcolor="#FFFFFF" align="center">
+				<fort:section name="form"> 
+					<div style="background-color: #FFFFFF; width:300px; border-style:dashed; border-color:#666666; border-width:1px; padding:10px;">
+						<form action="{url}" name="frmforgot" method="post">
+							<table width="100%" border="0" align="center" valign="top" cellspacing="3">
+							  <tr>
+								<td colspan="3" height="20" valign="top" align="left" >
+									<div class="style1">Please enter your username or e-mail address.<br />You will receive a new password via e-mail.</div></td>
+							  </tr>
+							  <tr>
+								<td colspan="2" valign="top">&nbsp;</td>
+							  </tr>
+							  <tr>
+								<td colspan="2" valign="top">
+									<div class="style2_err"><span style="color: rgb(153, 51, 0);">{error}</span></div>
+								</td>
+							  </tr>  
+							  <tr>
+								<td colspan="2">
+									<div align="left"><strong><span class="style2" style="padding-left:11px;">Username *</span></strong></div>
+									<div align="center"><input name="username" class="styleBox" type="text" maxlength="100" value="{username}"></div>
+								</td>
+							  </tr>
+							  <tr>
+								<td colspan="2">
+								  <div align="left"><strong><span class="style2" style="padding-left:11px;">E-mail *</span></strong></div>
+								  <div align="center">
+									<input name="email" class="styleBox" type="text" maxlength="100" value="{email}"></div>
+								</td>
+							  </tr>
+							  <tr>
+								<td width="48%" align="left">
+									<div style="font-family: verdana; font-size: 10px;" align="left"><a href="login.php" title="Login">Login</a></div>
+								</td>
+								<td width="52%" align="left"><input type="submit" name="submit_forgot" id="submit_forgot" value="Get New Password" /></td>
+							  </tr>
+							</table>
+						</form>
+					</div>
+				</fort>
+				<fort:section name="note"> 
+				  <div> 
+					<table width="100%" cellspacing="2" cellpadding="5" bgcolor="#F5F5F5">
+					  <tr> 
+						<td colspan="2" valign="middle" align="center" height="200" bgcolor="#FFFFFF" class="m1_text"> 
+							  We have sent an activation link to your registered email address to complete the process.
+							  <br>
+							  Please check your email Inbox and follow the instruction.
+							  <br><br>
+							  Important note: Some email providers may treat our email as spam; this may be sent to your junk or bulk mailbox.
+							 </span>
+							 <br><br>
+						  {dbutton}</td>
+					  </tr>
+					</table>
+				  </div>
+				  </fort>
+				</td>
+                <td class="bg8">&nbsp;</td>
+              </tr>
+              <tr>
+                <td class="bg9" height="157">&nbsp;</td>
+                <td class="bg10">&nbsp;</td>
+                <td class="bg11">&nbsp;</td>
+              </tr>
+            </table></td>
+		    <td width="9">&nbsp;</td>
+		    <td width="11">&nbsp;</td>
+		  </tr>

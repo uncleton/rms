@@ -1,0 +1,95 @@
+<form action="userpermission.html?id={gid}" method="post">        
+<div class="container-fluid main-content">
+        <div class="page-title">
+          <h1>
+            User Permission
+          </h1>
+        </div>
+        <!-- DataTables Example -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="widget-content padded clearfix">
+                <table class="table" >
+                  <thead>
+                    <th>
+                      Section
+                    </th>
+                    <th>
+                      View
+                    </th>
+                    <th>
+                      Add
+                    </th>
+                    <th>
+                      Edit
+                    </th>
+                    <th >
+                      Delete
+                    </th>
+                    <th>
+                      Approve
+                    </th>
+                  </thead>
+                  <tbody>
+                  	<fort:loop name="records">
+                    <tr>
+                      <td>
+                        {title}
+                      </td>
+                      <td>
+                          <div class="toggle-switch switch-small" data-off-label="OFF" data-on="primary" data-on-label="ON" >
+                            <input type="checkbox" value="{groupid}" {v_check} id="priority" name="view_{id}">
+                          </div>
+                      </td>
+                      <td>
+                          <div class="toggle-switch switch-small" data-off-label="OFF" data-on="primary" data-on-label="ON" >
+                            <input type="checkbox" value="{groupid}" {a_check} id="priority" name="add_{id}">
+                          </div>
+                      </td>
+                      <td>
+                          <div class="toggle-switch switch-small" data-off-label="OFF" data-on="primary" data-on-label="ON" >
+                            <input type="checkbox" value="{groupid}" {e_check} id="priority" name="edit_{id}">
+                          </div>
+                      </td>
+                      <td >
+                          <div class="toggle-switch switch-small" data-off-label="OFF" data-on="primary" data-on-label="ON" >
+                            <input type="checkbox" value="{groupid}" {d_check} id="priority" name="delete_{id}">
+                          </div>
+                      </td>
+                      
+                      <td>
+                          <div class="toggle-switch switch-small" data-off-label="OFF" data-on="primary" data-on-label="ON" >
+                            <input type="checkbox" value="{groupid}" {ap_check} id="priority" name="approve_{id}">
+                          </div>
+                      </td>
+                    </tr>
+                    </fort>
+                   
+                  </tbody>
+                  
+                  
+                  
+                  
+                </table>
+                
+              </div>
+            </div>
+          </div>
+        <!-- end DataTables Example -->
+      </div>
+      <div class="row" align="center">
+	<div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+          <div class="widget-content padded">
+            <div class="col-lg-12">
+                <input type="submit" class="btn btn-lg btn-block btn-primary-outline" id="submit" name="Submit" value="Save Access Rules" > 
+            </div>
+          </div>
+        </div>
+    </div> 
+</div>
+</form>
+
+
+

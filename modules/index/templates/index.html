@@ -1,0 +1,259 @@
+<div id="fancybox-example" style="display: none">
+    <h2>
+        Discount
+	</h2>
+    <p>
+    	<input class="form-control pull-right" name="discount-value" id="discount-value" placeholder="Php" value="" style="width:20%; margin-right:10px;" />
+        <select class="form-control" id="discount-options" name="discount-options" onchange="discount_amt()" style="width:70%; margin-left:10px;">
+			{discount}
+        </select>
+        <input id="discount-name" value="" type="hidden"/>
+        <span style="clear: both;display: block;height: 20px;"></span>
+        
+		<input class="form-control pull-right" id="pax-wdisc" placeholder="Pax w/ Disc" value="" style="width:30%; margin-right:10px;" />
+        <input class="form-control pull-right" id="pax" placeholder="No. of Pax" value="" style="width:30%; margin-right:10px;" />
+        <a data-content="This applies to Discounts limited to few person/s in a group (e.g. Senior Citizen). Enter the no. of customers in a table then no. of customer/s w/ discount." data-original-title="Limit Discount" data-toggle="popover-right" class="popover-right pull-right" style="cursor:pointer;"><span class="icon-info-sign"></span> &nbsp;</a>
+        <span style="clear: both;display: block;height: 20px;"></span>
+        <a class="btn btn-primary btn pull-right" onclick="add_discount()" href="Javascript:void(0)">Add Discount</a>
+    </p>
+</div>
+
+ <div class="container-fluid main-content">
+       
+        <div class="row">
+        	<div  class="col-md-12">
+                <a href="orders-add.html?id={to-oid}&tbl={to-tbl}" class="btn btn-lg btn-primary pull-right">Take Out</a>
+                <a href="orders-add.html?id={fp-oid}&tbl={fp-tbl}" class="btn btn-lg btn-primary pull-right">For Pickup</a>
+                <a href="orders-add.html?id={dl-oid}&tbl={dl-tbl}" class="btn btn-lg btn-primary pull-right">Delivery</a>
+          </div>
+        </div>  
+        <div class="row">
+          
+       
+          <fort:loop name="orders">
+          <!-- Table -->
+          <div  class="col-md-3" style="margin-top:10px;">
+            <div class="widget-container scrollable list task-widget padded" style="height:350px; min-height:350px;">
+              <div class="heading">
+                	<i class="icon-food"></i>{table} 
+                    <a href="Javascript:void(0);cancel_order('{oid}')" class="icon-remove pull-right" style="font-size:30px;"></a> 
+                    <a onclick="billout('{oid}')" class="icon-ok-circle pull-right" data-toggle="modal" href="#myModal" style="font-size:30px;"> Bill</a> 
+                    <a href="orders-add.html?id={oid}&tbl={tquery}" class="icon-plus pull-right" style="font-size:30px;"></a>
+              </div>
+              <div class="widget-content">
+                	<ul>
+                    	{order}
+                    </ul>
+              </div>  
+            </div>
+          </div>
+          <!-- Table End -->
+          </fort>
+          
+          <fort:loop name="orders-other">
+          <!-- Table -->
+          <div  class="col-md-3" style="margin-top:10px;">
+            <div class="widget-container scrollable list task-widget padded" style="height:350px; min-height:350px;">
+              <div class="heading" style="height:60px;">
+                	<i class="icon-food"></i>{table} 
+                    <a href="Javascript:void(0);cancel_order('{oid}')" class="icon-remove pull-right" style="font-size:30px;"></a> 
+                    <a onclick="billout('{oid}')" class="icon-ok-circle pull-right" data-toggle="modal" href="#myModal" style="font-size:30px;"> Bill</a> 
+                    <a href="orders-add.html?id={oid}&tbl={tquery}" class="icon-plus pull-right" style="font-size:30px;"></a>
+                    <span style="font-size:10px; color:#666;" class="pull-left">{customer}</span>
+              </div>
+              <div class="widget-content">
+                	<ul>
+                    	{order}
+                    </ul>
+              </div>  
+            </div>
+          </div>
+          <!-- Table End -->
+          </fort>
+          
+          
+        </div>
+        
+</div>
+
+<form action="./" method="post">
+		<div class="modal fade" id="myModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                        <h4 class="modal-title">
+                          Bill Out
+                        </h4>
+                      </div>
+                      <div class="modal-body" id="billout-content">
+                        
+                      </div>
+                      <div class="modal-footer">
+                        <input class="btn btn-primary" type="submit" value="Bill Out" name="billout" /><button class="btn btn-default-outline" data-dismiss="modal" type="button">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+</form>
+
+
+                
+<script>
+var touchsurface = document.getElementsByClassName("widget-content");
+$(document).ready(function(){
+var startX=0;
+for(i=0; i<touchsurface.length; i++){
+	if(typeof touchsurface[i].children[0].children[0] !="undefined"){
+		if(touchsurface[i].children[0].children.length>1){	
+			touchsurface[i].addEventListener("touchstart",function(e){
+				startX = e.changedTouches[0].pageX;
+			});
+			touchsurface[i].addEventListener("touchmove",function(e){
+				var endX = e.changedTouches[0].pageX;
+				dist = endX - startX;
+				//alert(dist)
+				if(dist){
+					e.preventDefault();
+					this.scrollTop += dist;
+				}
+			});
+		}
+	}
+}
+});
+
+var BillID="";
+var orig_subtotal=0;
+function billout(id){
+	orig_subtotal=0;
+	$.get("index-billout.html?id="+id,function(data){
+		$("#billout-content").html(data);	
+	});
+}
+function cancel(id){
+	var r=confirm("Are you sure you want to cancel this item?");
+		if (r==true){
+			top.location.href='index.html?c='+id;
+		}
+}
+function cancel_order(id){
+	var r=confirm("Are you sure you want to cancel this order?");
+		if (r==true){
+			top.location.href='index.html?co='+id;
+		}
+}
+
+function discount_amt(){
+	var discount = $("#discount-options").val().split("%");
+	$("#discount-value").val('');
+	if(discount){
+		if($("#discount").val()!='any'){
+			var subtotal = parseFloat($("#subtotal-form").val());
+			discount_val = subtotal*parseFloat('0.'+discount[0]);
+			$("#discount-value").val(discount_val.toFixed(2));
+			$("#discount-name").val($("#discount-options option:selected").text());
+		}
+		limit_disc(1);
+	}
+}
+// Limit Discount
+var origdisc = 0;
+var keyup = false;
+function limit_disc(t){
+	if(t=='1'){
+		origdisc = 0;	
+	}
+	//Limited Discount
+	var pax =  parseFloat($("#pax").val());
+	var pax_wdisc = parseFloat($("#pax-wdisc").val());
+	var disc = 0;
+	if(!origdisc){
+		disc = origdisc = parseFloat($("#discount-value").val());
+	}else{
+		disc = origdisc;	
+	}
+	if(pax&&pax_wdisc){
+		if(disc){
+			d = (disc/pax);
+			$("#discount-value").val((d*pax_wdisc).toFixed(2));
+		}
+	}else{
+		$("#discount-value").val(origdisc);
+	}
+	if(!keyup){
+		keyup=true;
+		$("#pax").keyup(function(){
+			limit_disc(2);
+		});
+		$("#pax-wdisc").keyup(function(){
+			limit_disc(2);
+		});	
+	}
+}
+
+function add_discount(){
+	origdisc = 0;
+	if($("#discount-value").val()){
+		var discount_html = '<span style="text-align:right;">'+$("#discount-name").val()+' &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; - Php '+$("#discount-value").val()+'</span><input name="discount_name[]" value="'+$("#discount-name").val()+'" type="hidden">';
+		
+		$("#discount #np").remove();
+		$("#discount").append(discount_html);
+		
+		// Adjust Totals
+		var discount = parseFloat($("#discount-form").val());
+		var subtotal = 0;
+		if(!orig_subtotal){
+			subtotal = orig_subtotal = parseFloat($("#subtotal-form").val());
+		}else{
+			subtotal = orig_subtotal;	
+		}
+		var vat = parseFloat($("#vat-form").val());
+		
+		// total Discount
+		var curdiscount = ( discount + parseFloat($("#discount-value").val()) ).toFixed(2);
+		
+		var subtotal = parseFloat(subtotal).toFixed(2);
+		var vat = 0;//parseFloat(subtotal * 0.12).toFixed(2);
+		var total = (parseFloat(subtotal-curdiscount)+parseFloat(vat)).toFixed(2);
+		
+		// Update forms
+		$("#discount-form").val( curdiscount );
+		$("#total-form").val(  total );
+		$("#subtotal-form").val( subtotal  );
+		$("#vat-form").val( vat );
+		
+		// Update html
+		$("#subtotal").html("Php "+subtotal);
+		$("#total").html("Php "+total);
+		$("#vat").html("Php "+vat);
+		
+		$("#discount-name").val('');
+		$("#discount-value").val('');
+	}
+	$(".fancybox-close").trigger("click");
+}
+// FF Discount Bug fix
+function hide_modal(){
+	$("#myModal").css("visibility","hidden");
+}
+function fancybox_beforeClose(){
+	$("#myModal").css("visibility","visible");
+}
+function discount_cal(){
+	var discount = parseFloat($("#discount_value").val().replace("-",""));
+	amt = parseFloat($("#amount").val())-discount;
+	$("#total").html('Php '+amt.toFixed(2));
+	//$("#total-form").val(amt.toFixed(2));
+}
+//$(document).ready(function(){
+//	$(".widget-content").each(function(){
+//		var cont_height = $(this).find("ul").css("height").replace("px","");
+//		if(parseInt(cont_height)<141){
+//			$(this).css("overflow","hidden");	
+//		}
+//	});
+//});
+
+
+</script>

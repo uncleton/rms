@@ -1,0 +1,100 @@
+<tr>
+<td height="9" colspan="5" class="bg5"></td>
+</tr>
+<tr>
+<td width="11"></td>
+<td width="500" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+	<td width="15" valign="top"><img src="/images/box_top_left.jpg" /></td>
+	<td class="bg6"></td>
+	<td width="15" valign="top"><img src="/images/box_top_right.jpg" /></td>
+  </tr>
+  <tr>
+	<td class="bg7">&nbsp;</td>
+	<td bgcolor="#FFFFFF" align="center">
+ 	<fort:section name="form"> 
+          <div> 
+            <form action="{url}" name="frmeditreg"  method="post">
+              <table width="100%" border="0" cellspacing="2" cellpadding="5">
+                <tr> 
+                  <td colspan="2"><span style="color:#993300"><b>Note:</b> All fields marked with asterisk ( * ) are required!</span></td>
+                </tr>
+                <tr> 
+                  <td colspan="2"><div align="left"><strong>Account Details</strong></div></td>
+                </tr>
+                <tr> 
+                  <td width="20%"><div align="left">Username:</div></td>
+                  <td width="80%">{uname}</td>
+                </tr>
+                <tr> 
+                  <td><div align="left">Password:</div></td>
+                  <td>{pass}</td>
+                </tr>
+                <tr> 
+                  <td><div align="left">Confirm Password:</div></td>
+                  <td>{pass2}</td>
+                </tr>
+                <tr> 
+                  <td><div align="left">Email:</div></td>
+                  <td>{email}</td>
+                </tr>
+                <tr> 
+                  <td colspan="2"><strong>Personal Information</strong></td>
+                </tr>
+                <tr> 
+                  <td>Last Name:</td>
+                  <td>{lname}</td>
+                </tr>
+                <tr> 
+                  <td>First Name:</td>
+                  <td>{fname}</td>
+                </tr>
+                <tr> 
+                  <td>Middle Name:</td>
+                  <td>{mname}</td>
+                </tr>
+                <tr> 
+                  <td>Date of Birth:</td>
+                  <td>{bday}</td>
+                </tr>
+                
+                <tr> 
+                  <td>Enter Security Code:</td>
+                  <td>{captcha}</td>
+                </tr>
+                <tr> 
+                  <td></td>
+                  <td><img src="/images/captcha.php"></td>
+                </tr>
+                <tr> 
+                  <td></td>
+                  <td>{sbutton}&nbsp;{cbutton}</td>
+                </tr>
+              </table>
+            </form>
+          </div>
+          </fort> 
+		  <fort:section name="note"> 
+          <div> 
+            <table width="100%" cellspacing="2" cellpadding="5" bgcolor="#F5F5F5">
+              <tr> 
+                <td colspan="2" valign="middle" align="center" height="200" bgcolor="#FFFFFF" class="m1_text"> 
+                  <h2>Your account has been updated!</h2>
+					 <br><br>
+                  {dbutton}</td>
+              </tr>
+            </table>
+          </div>
+          </fort>
+	</td>
+	<td class="bg8">&nbsp;</td>
+  </tr>
+  <tr>
+	<td class="bg9" height="157">&nbsp;</td>
+	<td class="bg10">&nbsp;</td>
+	<td class="bg11">&nbsp;</td>
+  </tr>
+</table></td>
+<td width="9">&nbsp;</td>
+<td width="11">&nbsp;</td>
+</tr>

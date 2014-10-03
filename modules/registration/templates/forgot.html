@@ -1,0 +1,47 @@
+   	<div class="contentHolder">
+    	<h3 class="pageNameHeader">FORGOT PASSWORD</h3>
+        <div class="choppingBoard">
+	        <img src="{template_url}images/veggies.png" class="productShot veggies" />
+            <img src="{template_url}images/knife.png" class="productShot knife" />
+        	<fort:section name="form">
+                <form action="{url}" name="forgot" method="post" target="_parent">
+                    <table class="signInForm">
+                        <tr>
+                            <td style="text-align:left; font-size:12px" colspan="2"><strong>Note:</strong> Please enter your e-mail address. You will receive a new password via e-mail.</td>
+                        </tr>
+                        <tr>
+                            <td><label for="username">E-mail Address:</label></td>
+                            <td><input type="text" id="email" name="email"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <ul class="signInButton">
+                                    <li><a href="#" class="button2" onclick="forgot.submit();">Get New Password</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td style="text-align:left; font-size:12px">{error}</td>
+                        </tr>
+                        <tr>
+                            <td height="20">&nbsp;</td>
+                        </tr>
+                    </table>
+                </form>
+            </fort>
+            <fort:section name="thankyou">
+                <div style="float:left; width:400px; height:413px; margin-top:50px; margin-left:30px; font-size:16px; color:#7e1517;"> 
+                    We have sent an activation link to your registered email address to complete the process.
+                    <br>
+                    Please check your email Inbox and follow the instruction.
+                    <br><br>
+                    Important note: Some email providers may treat our email as spam; this may be sent to your junk or bulk mailbox.
+                    <br /><br />
+                    <a href="{cancel_url}" class="button">ok</a>
+                </div>
+            </fort>
+            <div class="clearDiv"></div>
+        </div>
+        <div class="choppingBoardBottom"></div>
+    </div>

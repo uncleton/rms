@@ -1,0 +1,124 @@
+<div class="container-fluid main-content">
+        <div class="page-title">
+          <h1>
+            Raw Ingredients
+          </h1>
+        </div>
+        <!-- DataTables Example -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="heading">
+                <a class="btn btn-sm btn-primary-outline pull-right" href="inventory-add_ingredient.html" id=""><i class="icon-plus"></i>Add Ingredient</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-bordered table-striped" id="dataTable">
+                  <thead>
+                  	<th>
+                      Ingredient Name
+                    </th>
+                    <th>
+                      Stocks
+                    </th>
+                    <th>
+                      Base Price
+                    </th>
+                    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                  </thead>
+                  
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end DataTables Example -->
+      </div>
+
+		<div class="modal fade" id="myModal">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button aria-hidden="true" class="close" data-dismiss="modal" type="button">&times;</button>
+                        <h4 class="modal-title">
+                          Add stocks
+                        </h4>
+                      </div>
+                      <div class="modal-body" id="stocks-content">
+                      	
+                      	<div class="widget-content" id="form">
+                            
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <input class="btn btn-primary" type="submit" value="Add Stocks" onclick="add_stocks()" name="stocks" /><button class="btn btn-default-outline" data-dismiss="modal" id="close" type="button">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+     
+<script>
+var DataTable =""
+$(document).ready(function() {
+	 DataTable = $('#dataTable').dataTable( {
+        "bProcessing": true,
+		"sPaginationType": "full_numbers",
+        "bServerSide": true,
+		"bSort": false,
+        "sAjaxSource": "inventory-ingredient_data.html",
+		"fnCreatedRow": function( nRow, aData, iDataIndex ) {
+			  // Bold the grade for all 'A' grade browsers
+		}
+      });
+	 //var TestTable = $('#dataTable').dataTable();
+	  // Sort immediately with columns 0 and 1
+	  DataTable.fnSort( [ [1,'desc'] ] );
+});
+
+var object;
+
+function stocks(id,obj){
+	$("#id").val(id);
+	$("#stock").val('');
+	$("#unit").val(0);
+	$("#price").val('');
+	$.get("inventory-stocksform.html",{"id":id},function(data){
+		if(data){
+			$("#form").html(data);	
+		}
+	});
+	object = obj;
+}
+function add_stocks(){
+	var id = $("#id").val();
+	var stock = $("#stock").val();
+	var units = $("#unit").val();
+	var price = $("#price").val();
+	if(units,stock,price){
+		$.post("inventory-stocks.html",{"id":id,"stock":stock,"unit":units,"price":price},function(data){
+			if(data){
+				$("#close").trigger("click");
+				var res = data.split(':');
+				
+				$(object).parents('tr').find('.price-icon').remove();
+				icon='';
+				if(res[2]=='up'){
+					icon = '<i class="icon-arrow-up price-icon"  style="color:red;"></i>';
+				}
+				if(res[2]=='down'){
+					icon = '<i class="icon-arrow-down price-icon"  style="color:green;"></i>';
+				}
+				if(res[2]=='norm'){
+					icon = '<i class=" price-icon"  style="color:blue;">-&nbsp;-</i> &nbsp; ';
+				}
+				$(object).parents('tr').find('td:eq(1)').html(res[0]);
+				$(object).parents('tr').find('td:eq(2)').prepend(icon);
+				
+			}
+		});
+	}
+}
+</script>
+
+
+
+

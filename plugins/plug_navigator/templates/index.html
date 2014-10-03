@@ -1,0 +1,98 @@
+<style type="text/css">
+.remove{
+	display:none;
+}
+</style>
+      <div class="navbar navbar-fixed-top scroll-hide">
+        <div class="container-fluid top-bar">
+          <div class="pull-right">
+            <ul class="nav navbar-nav pull-right">
+              <li class="dropdown user hidden-xs"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
+               {fname} {lname}<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="index.html?logout=true">
+                    <i class="icon-signout"></i>Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <button class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="logo" href="index.html">se7en</a>
+          <!--form class="navbar-form form-inline col-lg-2 hidden-xs">
+            <input class="form-control" placeholder="Search" type="text">
+          </form-->
+        </div>
+        <div class="container-fluid main-nav clearfix">
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <a href="index.html" {tab1}><span aria-hidden="true" class="se7en-home"></span>Dining</a>
+              </li>
+              <li {orders}><a  data-toggle="dropdown" href="#" {tab3}>
+                	<span aria-hidden="true" class="se7en-feed"></span>Orders<b class="caret"></b></a>
+                	<ul class="dropdown-menu">
+                      <li>
+                        <a href="orders-manage.html">Manage Orders</a>
+                      </li>
+                      <li>
+                        <a href="orders.html">Order Queing</a>
+                      </li>
+                  </ul>
+              </li>
+              <li {report}><a data-toggle="dropdown" href="#" {tab6}>
+                <span aria-hidden="true" class="se7en-charts"></span>Reports<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="index-sales_report.html">Sales Report</a>
+                  </li>
+                  <li>
+                    <a href="index-sold_items.html">Sold Items</a>
+                  </li>
+                  <li>
+                    <a href="index-expense_report.html">Expense Report</a>
+                  </li>
+                </ul>
+              </li>
+              <li {inventory}><a data-toggle="dropdown" href="#" {tab4}>
+                <span aria-hidden="true" class="se7en-tables"></span>Inventory<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="inventory-products.html">Products</a>
+                  </li>
+                  <li>
+                    <a href="inventory-packages.html">Packages</a>
+                  </li>
+                  <li>
+                    <a href="inventory-ingredients.html">Raw Ingredients</a>
+                  </li>
+                  <li>
+                    <a href="inventory-prepared_ingredient.html">Prepared Ingredients</a>
+                  </li>
+                  
+                </ul>
+              </li>
+              <li>
+                <a href="system-expenses.html" {tab7}><span aria-hidden="true" class="icon-money "></span>Expenses</a>
+              </li>
+              <li {users}><a data-toggle="dropdown" href="#" {tab5}>
+                <span aria-hidden="true" class="se7en-star"></span>Administration<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li {system}>
+                    <a href="system-settings.html">Settings</a>
+                  </li>
+                  <li {userman}>
+                    <a href="userman.html">User Management</a>
+                  </li>
+                  <li {usergroup}>
+                    <a href="usergroup.html">User Groups / Permission</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Navigation -->                
+<script>
+	$('.remove').remove();
+</script>

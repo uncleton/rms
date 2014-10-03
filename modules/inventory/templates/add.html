@@ -1,0 +1,225 @@
+<div class="container-fluid main-content"><div class="page-title">
+  <h1>
+    Product Manager
+  </h1>
+</div>
+<form action="inventory-add.html" id="request-form" class="form-horizontal" method="post" enctype="multipart/form-data">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="icon-reorder"></i>Modify {prpduct}<br>
+        <!--span class="col-md-2"></span><span style="color:#900" class="required-msg">All Red fields are required.</span-->
+      </div>
+      	
+      <div class="widget-content padded">
+      	<div class="form-group">
+        	
+            <label class="control-label col-md-2"></label>
+            <div class="col-md-7" style="color:#900">
+            	{error}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Product Name</label>
+          <div class="col-md-7">
+           <input class="form-control" placeholder="Value" value="{name}" id="name" name="name" type="text">
+           <input class="form-control" placeholder="Value" value="{id}" name="id" type="hidden">
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Photo</label>
+            {photo}
+          </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Category</label>
+          <div class="col-md-7">
+          	<select class="form-control" id="categories" name="categories">
+                {categories}
+            </select>
+          </div>
+        </div>
+        <!--div class="form-group">
+          <label class="control-label col-md-2">Sub-Category</label>
+          <div class="col-md-7">
+           	<select class="form-control" id="subcategories" name="subcategories">
+                {subcategories}
+            </select>
+          </div>
+        </div-->
+        <div class="form-group">
+          <label class="control-label col-md-2">Stocks &nbsp; <a data-content="Leave stocks as empty if you want to auto deduct stocks from Ingredients and Add-ons." data-original-title="Product Stocks" data-toggle="popover-right" class="popover-right"><span class="icon-info-sign"></span> </a></label>
+          <div class="col-md-5">
+           <input class="form-control" placeholder="No. of Pieces" value="{stock}" id="stock" name="stock" type="text">
+          </div>
+          <label class="control-label col-md-2" style="text-align:left;"> + {stocks} (Available)</label>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Price</label>
+          <div class="col-md-5">
+           <input class="form-control" placeholder="Value" value="{price}" id="price" name="price" type="text">
+          </div>
+          <div class="col-md-2" style="font-size:12px">
+           Price Estimate (@margins)<br> @40% = <span id="p100"></span> <br>@50% = <span id="p80"></span>
+          </div>
+        </div>
+        <!--div class="form-group">
+          <label class="control-label col-md-2">Add-on &nbsp; <a data-content="Check this option to show this product in Add-on Product list." data-original-title="Product Add-on" data-toggle="popover-right" class="popover-right"><span class="icon-info-sign"></span> </a></label>
+          <div class="col-md-7">
+           <label class="checkbox"><input value="1" name="addon" type="checkbox" {addon}><span></span></label>
+          </div>
+        </div-->
+        <div class="form-group">
+          <label class="control-label col-md-2">Cost</label>
+          <div class="col-md-7">
+           <input class="form-control" placeholder="Product Cost" value="{cost}" id="cost" name="cost" type="text" readonly="readonly">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="icon-reorder"></i>Raw Ingredients<br>
+        <!--span class="col-md-2"></span><span style="color:#900" class="required-msg">All Red fields are required.</span-->
+      </div>
+      	
+      <div class="widget-content padded">
+        
+        <div id="ingredient-form">
+            {ing_list}
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label col-md-2"></label>
+          <div class="col-md-4">
+              <select class="form-control" id="ingredient" >
+                {ingredients}
+              </select>
+          </div>
+          <div class="col-md-2">
+              <input class="form-control" placeholder="Qty" id="qty">
+          </div>
+          
+          <div class="col-md-1">
+              <a class="btn btn-success" href="Javascript:void(0);" onclick="add()">Add</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="icon-reorder"></i>Prepared Ingredients<br>
+        <!--span class="col-md-2"></span><span style="color:#900" class="required-msg">All Red fields are required.</span-->
+      </div>
+      	
+      <div class="widget-content padded">
+        
+        <div id="addon-form">
+            {add_list}
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label col-md-2"></label>
+          <div class="col-md-4">
+              <select class="form-control" id="addons" >
+                {addons}
+              </select>
+          </div>
+          
+          <div class="col-md-1">
+              <a class="btn btn-success" href="Javascript:void(0);" onclick="add_addons()">Add</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" align="center">
+	<div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+          <div class="widget-content padded">
+          	<label class="control-label col-md-1"></label>
+          	<div class="col-lg-4">
+                <a class="btn btn-lg btn-block btn-default" href="inventory-products.html">Back To Product List</a> 
+            </div>
+            <div class="col-lg-4">
+                <button class="btn btn-lg btn-block btn-primary-outline" id="submit">Save</button> 
+            </div>
+          </div>
+        </div>
+    </div> 
+</div>
+</form>
+
+<script>
+
+$("#request-form").validate({
+      rules: {
+        name: "required",
+		categories: "required",
+		price: "required"
+      },
+      messages: {
+        username: "Please enter Product Name",
+		categories: "Please Select a Category",
+		price: "Please enter a price"
+      }
+});
+
+function add(){
+	
+	var ingredient = $('#ingredient').val();
+	var name = $("#ingredient option[value='"+ingredient+"']").text();
+	var count = $('#ingredient-form .form-group').length;
+	if(ingredient){
+		ing = ingredient.split(":");
+		var cost = (ing[2]*parseFloat($("#qty").val()));
+		var form = '<div class="form-group"><label class="control-label col-md-2"></label><div class="col-md-3">'
+			   + (count+1) +'. '+$("#qty").val()+ing[1]+' '+name+' (Php '+cost+') <input type="hidden" value="'+ing[0]+':'+$("#qty").val()+':'+cost+'" name="ingredients[]">'
+               +'</div><div class="col-md-4"><a href="Javascript:void(0);" onclick="del(this,\''+cost+'\')"><i class="icon-trash"></i> Delete</a></div></div>';
+		$("#cost").val(parseFloat($("#cost").val())+cost);
+	}
+	$('#ingredient-form').append(form);
+	price_est();
+}
+function add_addons(){
+	
+	var addons = $('#addons').val();
+	var name = $("#addons option[value='"+addons+"']").text();
+	var count = $('#addon-form .form-group').length;
+	if(ingredient){
+		ing = addons.split(":");
+		var form = '<div class="form-group"><label class="control-label col-md-2"></label><div class="col-md-3">'
+			   + (count+1) +'. '+name+' (Php '+ing[1]+') <input type="hidden" value="'+ing[0]+':'+ing[1]+'" name="addons[]">'
+               +'</div><div class="col-md-4"><a href="Javascript:void(0);" onclick="del(this,\''+ing[1]+'\')"><i class="icon-trash"></i> Delete</a></div></div>';
+			   $("#cost").val(parseFloat($("#cost").val())+parseFloat(ing[1]));
+	}
+	$('#addon-form').append(form);
+	price_est();
+}
+
+
+function del(obj,cost){
+	$("#cost").val(parseFloat($("#cost").val())-parseFloat(cost));
+	$(obj).parents('.form-group').remove();
+	price_est();
+}
+price_est();
+function price_est(){
+	var cost = parseFloat($("#cost").val());
+	if(!cost){
+		cost=0;	
+	}
+	//var oh = cost + (cost*0.3);
+	$("#p100").html('Php '+Math.round((cost/.3) * 100)/100);
+	$("#p80").html('Php '+Math.round((cost/.25) * 100)/100);
+}
+</script>

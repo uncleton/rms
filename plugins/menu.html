@@ -1,0 +1,62 @@
+<script type="text/javascript">
+	enable_nav_icon("webman_icon");
+	disable_nav_icon("module_icon");
+
+
+	function showMe(id,g,mode){
+		
+		alert(id + 'g:'+g + 'mode:'+);
+		//document.getElementById(id).style.display='none';
+		var div=document.getElementById(id);
+		if(mode == 'open'){
+			if(div.style.display=='none'){
+				div.style.display='block';
+				document.getElementById('plusminus'+id).innerHTML='-';
+				Set_Cookie( "menu_"+g+"_"+id, "open", '', '/', '', '' );
+			}else if (div.style.display=='block'){
+				div.style.display='none';
+				document.getElementById('plusminus'+id).innerHTML='+';
+				Delete_Cookie("menu_"+g+"_"+id,'/','');
+			}
+		}
+		
+		div.innerHTML=Ajax_load_value("systems/links/level.php?id="+id+"&g="+g,id);
+		var ids=Ajax_load_value("systems/links/level.php?id="+id+"&g="+g+"&mode=open");
+			id=ids.split("-");
+			rfids = '{rfids}';
+			rfid = rfids.split("-");
+			for(var obj in id){
+				if(id[obj]){
+					for(var rf in rfid){
+						if(rfid[rf]==id[obj]){
+							showMe(id[obj],g,'open');
+						}
+					}
+				}
+			}	
+	}	
+</script>
+<table width="95%" cellspacing="0" cellpadding="0">
+		 <fort:loop name="list">
+		  <tr> 
+			<td width="50%" align="left" height="25" style="padding-left:20px;" bgcolor="{bg}" class="f1">
+            
+				<a style="cursor:pointer;" class="l1" onclick="showMe('{ajax_id}','{g}','{ajax_mode}');"><span id="plusminus{id}">+</span>&nbsp;&nbsp;&nbsp;{title}</a></td>
+			<td width="50%" align="right" height="25" style="padding-left:20px;" bgcolor="{bg}">
+				&nbsp;<a href="{lurl}" class="l1">{limage}</a>
+				&nbsp;<a onclick="del('system.php?LM=links.menu&redirect={durl}')" style="cursor:pointer;">{dimage}</a>
+				&nbsp;<a href="{edit_link}"><img src="templates/images/page_edit.png" title="Edit" alt="Edit" width="16" height="16" align="absmiddle" border="0"/></a>
+                {seturl}
+				&nbsp;<a href="../global/{preview}" target="_blank"><img src="templates/images/eye.png" width="16" title="Preview" alt="Preview" height="16" align="absmiddle" border="0"/></a>
+				&nbsp;<a href="system.php?LM=links.menu&redirect={surl}">{image_status}</a>
+				&nbsp;&nbsp;&nbsp;<a href="system.php?LM=links.menu&id={id}&pos={pos}&seq=1&g={g}"><img src="templates/images/arrow_up.png" width="16" height="16" align="absmiddle" border="0"/></a><a href="system.php?LM=links.menu&id={id}&g={g}&pos={pos}&seq=-1"><img src="templates/images/arrow_down.png" width="16" height="16" border="0" align="absmiddle"/></a>&nbsp;&nbsp;
+			</td>
+		  </tr>
+		  <tr> 
+			<td width="95%" colspan="2" align="left" style="padding-left:20px;" bgcolor="{bg}" class="f1"><div id="{id}" style="display:none"></div></td>
+		  </tr>
+		 </fort>
+		</table>
+<script>
+{show_default}
+</script>

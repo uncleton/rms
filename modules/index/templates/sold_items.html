@@ -1,0 +1,227 @@
+
+<div class="container-fluid main-content">
+  <div class="page-title">
+  	<div style="float:right">
+    	<form action="" method="post" enctype="multipart/form-data">
+    	<div class="col-lg-11">
+                <div class="form-group">
+                     
+                    <div class="col-md-4"> 
+                        <div data-date-format="yyyy-mm-dd" data-date-autoclose="true" class="input-group date datepicker">
+                                <input type="text" name="datefrom" class="form-control" value="{datefrom}"><span class="input-group-addon"><i class="icon-calendar"></i></span>
+                         </div>
+                     </div>
+                     <label class="control-label col-md-1">TO</label>
+                     <div class="col-md-4"> 
+                         <div data-date-format="yyyy-mm-dd" data-date-autoclose="true" class="input-group date datepicker">
+                                <input type="text" name="dateto" class="form-control" value="{dateto}"><span class="input-group-addon"><i class="icon-calendar"></i></span>
+                         </div>
+                     </div>
+                     <div class="col-md-2">
+                     	<select class="form-control" name="filter">
+                        	{filter}
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                      <button class="btn btn-primary" type="submit">FILTER</button>
+                    </div>
+                </div>
+         </div>
+         </form>
+    </div>
+    <h1> Sales Report </h1>
+  </div>
+ 	 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-container fluid-height">
+        <div class="heading"> <i class="icon-bar-chart"></i>PIZZA</div>
+        <div class="widget-content padded text-center">
+          <div class="graph-container">
+            <div class="caption"></div>
+            <div class="graph" id="pizza-bar"></div>
+            <!-- Bar Charts:Morris --> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-container fluid-height">
+        <div class="heading"> <i class="icon-bar-chart"></i>PASTA</div>
+        <div class="widget-content padded text-center">
+          <div class="graph-container">
+            <div class="caption"></div>
+            <div class="graph" id="pasta-bar"></div>
+            <!-- Bar Charts:Morris --> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-container fluid-height">
+        <div class="heading"> <i class="icon-bar-chart"></i>GRILL / MEAT</div>
+        <div class="widget-content padded text-center">
+          <div class="graph-container">
+            <div class="caption"></div>
+            <div class="graph" id="grill-bar"></div>
+            <!-- Bar Charts:Morris --> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-container fluid-height">
+        <div class="heading"> <i class="icon-bar-chart"></i>SIDES</div>
+        <div class="widget-content padded text-center">
+          <div class="graph-container">
+            <div class="caption"></div>
+            <div class="graph" id="sides-bar"></div>
+            <!-- Bar Charts:Morris --> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="widget-container fluid-height">
+        <div class="heading"> <i class="icon-bar-chart"></i>DRINKS</div>
+        <div class="widget-content padded text-center">
+          <div class="graph-container">
+            <div class="caption"></div>
+            <div class="graph" id="drinks-bar"></div>
+            <!-- Bar Charts:Morris --> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--div class="row">
+  	<div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="heading">
+                <i class="icon-table"></i>Sold Items
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-hover">
+                  <thead>
+                    <th>
+                      Date
+                    </th>
+                    <th>
+                      Revenue
+                    </th>
+                    <th>
+                      Cost
+                    </th>
+                    <th class="hidden-xs">
+                      Discount
+                    </th>
+                  </thead>
+                  <tbody>
+                  	<fort:loop name="data_table">
+                    <tr>
+                      <td>
+                        {date}
+                      </td>
+                      <td>
+                        {sales}
+                      </td>
+                      <td>
+                        {cost}
+                      </td>
+                      <td class="hidden-xs">
+                        {discount}
+                      </td>
+                    </tr>
+                    </fort>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+  </div-->
+</div>
+<script>
+	Morris.Bar({
+          element: "pizza-bar",
+          data: [
+		  	
+			{pizza_data}
+          ],
+          xkey: "date",
+          ykeys: [{pizza_ykeys}],
+          labels: [{pizza_ylabels}],
+		  barRatio: 0.4,
+		  //hideHover: "auto",
+          xLabelAngle: 35,
+          barColors: ["#F00","#960","#9C0","#CC0","#F60","#FC0","#6CF","#66F","#60F","#36F","#009","#6C0","#660","#600","#360","#90F","#666","#000","#369","#099"]
+		  
+        });
+	Morris.Bar({
+          element: "pasta-bar",
+          data: [
+		  	
+			{pasta_data}
+          ],
+          xkey: "date",
+          ykeys: [{pasta_ykeys}],
+          labels: [{pasta_ylabels}],
+		  barRatio: 0.4,
+		  //hideHover: "auto",
+          xLabelAngle: 35,
+          barColors: ["#F00","#960","#9C0","#CC0","#F60","#FC0","#6CF","#66F","#60F","#36F","#009","#6C0","#660","#600","#360","#90F","#666","#000","#369","#099"]
+		  
+        });
+	Morris.Bar({
+          element: "grill-bar",
+          data: [
+		  	
+			{grill_data}
+          ],
+          xkey: "date",
+          ykeys: [{grill_ykeys}],
+          labels: [{grill_ylabels}],
+		  barRatio: 0.4,
+		  //hideHover: "auto",
+          xLabelAngle: 35,
+          barColors: ["#F00","#960","#9C0","#CC0","#F60","#FC0","#6CF","#66F","#60F","#36F","#009","#6C0","#660","#600","#360","#90F","#666","#000","#369","#099"]
+		  
+        });
+	Morris.Bar({
+          element: "sides-bar",
+          data: [
+		  	
+			{sides_data}
+          ],
+          xkey: "date",
+          ykeys: [{sides_ykeys}],
+          labels: [{sides_ylabels}],
+		  barRatio: 0.4,
+		  //hideHover: "auto",
+          xLabelAngle: 35,
+          barColors: ["#F00","#960","#9C0","#CC0","#F60","#FC0","#6CF","#66F","#60F","#36F","#009","#6C0","#660","#600","#360","#90F","#666","#000","#369","#099"]
+		  
+        });
+	Morris.Bar({
+          element: "drinks-bar",
+          data: [
+		  	
+			{drinks_data}
+          ],
+          xkey: "date",
+          ykeys: [{drinks_ykeys}],
+          labels: [{drinks_ylabels}],
+		  barRatio: 0.4,
+		  //hideHover: "auto",
+          xLabelAngle: 35,
+          barColors: ["#F00","#960","#9C0","#CC0","#F60","#FC0","#6CF","#66F","#60F","#36F","#009","#6C0","#660","#600","#360","#90F","#666","#000","#369","#099"]
+		  
+        });
+</script>

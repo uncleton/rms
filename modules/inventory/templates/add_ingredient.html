@@ -1,0 +1,142 @@
+<div class="container-fluid main-content"><div class="page-title">
+  <h1>
+    Ingredient Manager
+  </h1>
+</div>
+<form action="inventory-add_ingredient.html" id="request-form" class="form-horizontal" method="post" enctype="multipart/form-data">
+<div class="row">
+  <div class="col-lg-12">
+    <div class="widget-container fluid-height clearfix">
+      <div class="heading">
+        <i class="icon-reorder"></i>Modify {prpduct}<br>
+        <!--span class="col-md-2"></span><span style="color:#900" class="required-msg">All Red fields are required.</span-->
+      </div>
+      	
+      <div class="widget-content padded">
+      	<div class="form-group">
+        	
+            <label class="control-label col-md-2"></label>
+            <div class="col-md-7" style="color:#900">
+            	{error}
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">Ingredient Name</label>
+          <div class="col-md-7">
+           <input class="form-control" placeholder="Value" value="{name}" id="name" name="name" type="text">
+           <input class="form-control" placeholder="Value" value="{id}" name="id" type="hidden">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2"> 
+          	Base Unit &nbsp; <a data-content="This is the unit of measurement that is normally used in recipes." data-original-title="Base unit" data-toggle="popover-right" class="popover-right" style="cursor:pointer;"><span class="icon-info-sign"></span> &nbsp;</a>
+          </label>
+          <div class="col-md-7">
+           	<select class="form-control" id="unit" name="unit">
+                {units}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-2">{stock_label}</label>
+          {stock}
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label col-md-2">{price_label}</label>
+          <div class="col-md-7">
+           <input class="form-control" placeholder="Value" value="{price}" id="price" name="price" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+              
+          	
+            <div class="widget-content padded clearfix">
+            	<div class="heading">
+                    <i class="icon-reorder"></i>Stocking History<br>
+                </div>
+                
+                <table class="table">
+                  <thead>
+                    <th>
+                      Date
+                    </th>
+                    <th>
+                      Stocks
+                    </th>
+                    <th>
+                      Unit Price
+                    </th>
+                    <th>
+                      Price
+                    </th>
+                    <th>
+                    </th>
+                  </thead>
+                  <tbody>
+                  <fort:loop name="history">
+                    <tr>
+                      <td>
+                        {date}
+                      </td>
+                      <td>
+                         {stocks}
+                      </td>
+                      <td>
+                       {unit_price}
+                      </td>
+                      <td>
+                        {cost}
+                      </td>
+                      <td>
+                        {delete}
+                      </td>
+                    </tr>
+                   </fort>
+                  </tbody>
+                </table>
+              </div>
+            
+        </div>
+    </div> 
+</div>
+
+<div class="row" align="center">
+	<div class="col-lg-12">
+        <div class="widget-container fluid-height clearfix">
+          <div class="widget-content padded">
+          	<label class="control-label col-md-1"></label>
+          	<div class="col-lg-4">
+                <a class="btn btn-lg btn-block btn-default" href="inventory-ingredients.html">Back To Ingredient List</a> 
+            </div>
+            <div class="col-lg-4">
+                <button class="btn btn-lg btn-block btn-primary-outline" id="submit">Save</button> 
+            </div>
+          </div>
+        </div>
+    </div> 
+</div>
+</form>
+
+<script>
+
+$("#request-form").validate({
+      rules: {
+        name: "required",
+		categories: "required",
+		price: "required"
+      },
+      messages: {
+        username: "Please enter Product Name",
+		categories: "Please Select a Category",
+		price: "Please enter a price"
+      }
+});
+
+</script>

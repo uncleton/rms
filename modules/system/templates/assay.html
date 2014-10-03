@@ -1,0 +1,137 @@
+ <div class="container-fluid main-content">
+        <div class="page-title">
+          <h1>
+            Test Assay
+          </h1>
+        </div>
+        <!-- DataTables Example -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="widget-container fluid-height clearfix">
+              <div class="heading">
+                <a class="btn btn-sm btn-primary-outline pull-right" href="system-assayadd.html" id=""><i class="icon-plus"></i>Add Assay</a>
+              </div>
+              <div class="widget-content padded clearfix">
+                <table class="table table-bordered table-striped" id="dataTable">
+                  <thead>
+                    
+                    <th>
+                      ID
+                    </th>
+                    <th>
+                      Assay Code
+                    </th>
+                    <th class="hidden-xs">
+                      Assay Name
+                    </th>
+                    <th class="hidden-xs">
+                      Specimen
+                    </th>
+                    <th class="hidden-xs">
+                      Instrument
+                    </th>
+                    <th class="hidden-xs">
+                      Dil1
+                    </th>
+                    <th class="hidden-xs">
+                      Dil2
+                    </th>
+                    <th class="hidden-xs">
+                      Dil3
+                    </th>
+                    <th>
+                      Value<br>Normal
+                    </th>
+                    <th class="hidden-xs">
+                      Value<br />Limit
+                    </th>
+                    <th class="hidden-xs">
+                      Value<br>Critical
+                    </th>
+                    <th class="hidden-xs">
+                      Value<br>QC
+                    </th>
+                    
+                    <th></th>
+                  </thead>
+                  <tbody>
+                  	<fort:loop name="records">
+                    <tr>
+                      
+                      <td>
+                        {code}
+                      </td>
+                      <td>
+                        {test_code}
+                      </td>
+                      <td class="hidden-xs">
+                        {name}
+                      </td>
+                      <td class="hidden-xs">
+                        {specimen}
+                      </td>
+                      <td class="hidden-xs">
+                        {instrument}
+                      </td>
+                      <td class="hidden-xs">
+                        {dilution0}
+                      </td>
+                      <td class="hidden-xs">
+                        {dilution1}
+                      </td>
+                      <td class="hidden-xs">
+                        {dilution2}
+                      </td>
+                      <td>
+                        {value_normal}
+                      </td>
+                      <td class="hidden-xs">
+                        {value_val}
+                      </td>
+                      <td class="hidden-xs">
+                        {value_critical}
+                      </td>
+                      <td class="hidden-xs">
+                        {value_qc}
+                      </td>
+                      <td class="actions">
+                        <div class="action-buttons">
+                          {edit}
+                          {delete}
+                          
+                        </div>
+                      </td>
+                    </tr>
+                    </fort>
+                   
+                  </tbody>
+                  
+                  
+                  
+                  
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end DataTables Example -->
+      </div>
+<script>
+$(document).ready(function() {
+	 var TestTable = $("#dataTable").dataTable({
+      "sPaginationType": "full_numbers",
+	  "bSort": false,
+      aoColumnDefs: [
+        {
+          bSortable: false,
+          aTargets: [-2, -1]
+        }
+      ]
+    });
+	TestTable.fnSort( [ [4,'desc'] ] );
+});
+</script>
+
+
+
+

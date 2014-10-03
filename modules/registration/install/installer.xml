@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<installation>
+	<install>
+		<title>Registration Module</title>
+		<description><![CDATA[Registration]]></description>
+		<date>1188025211</date>
+		<folder>registration</folder>
+		<content></content>
+		<type>modules</type>
+		<tag></tag>
+		<padd>1</padd>
+		<pedit>1</pedit>
+		<pdelete>1</pdelete>
+		<pview>1</pview>
+		<papprove>1</papprove>
+		<page file="index">Registration Form</page>
+		<page file="forgot">Forgot Password Form</page>
+		<page file="edit">Edit Form</page>
+	</install>
+</installation>	
+

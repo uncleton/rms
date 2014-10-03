@@ -1,0 +1,77 @@
+   	<div class="contentHolder">
+    	<h3 class="pageNameHeader">REGISTRATION</h3>
+    	<p class="contactPar">Phasellus sed massa velit. Mauris ante justo, pulvinar a tempus eget, cursus adipiscing nulla. In elementum dapibus pharetra. Duis a eros rutrum augue fermentum posuere. Praesent quis mi non turpis consequat lacinia and we'll get back to you!</p>
+        <div class="choppingBoard">
+        	<img src="{template_url}images/cheeseFranks.png" class="productShot cheeseFranksShot" />
+            <img src="{template_url}images/bologna.png" class="productShot bolognaShot" />
+        	<fort:section name="form">
+                <form action="{url}" name="register" method="post" target="_parent">
+                    <table class="registrationForm">
+                        <tr>
+                            <td><label for="email">Email:</label></td>
+                            <td>{email}{id}</td>
+                        </tr>
+                        <tr>
+                            <td><label for="subject">Password:</label></td>
+                            <td>{pass}</td>
+                        </tr>
+                        <tr>
+                            <td><label for="message">Re-enter Password:</label></td>
+                            <td>{pass2}</td>
+                        </tr>
+                        <tr>
+                            <td><label for="message">First Name:</label></td>
+                            <td>{fname}</td>
+                        </tr>
+                        <tr>
+                            <td><label for="message">Last Name:</label></td>
+                            <td>{lname}</td>
+                        </tr>
+                        <tr>
+                            <td><label for="message">Gender:</label></td>
+                            <td>
+                                <input type="radio" name="gender" id="gender"  value="M" {chk_male}> Male &nbsp; &nbsp; 
+                                <input type="radio" name="gender" id="gender"  value="F" chk_fmale> Female &nbsp; &nbsp; 
+                                {req_gender}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="message">Contact No:</label></td>
+                            <td>{contact}</td>
+                        </tr>
+                        <tr>
+                            <td><label for="message">Birthday:</label></td>
+                            <td>{bday}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="checkbox" name="notification" id="notification" value="Y" {chk_notice} > I want to receive email notifications</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <ul class="buttons">
+                                    <li><a href="#" class="button" onclick="register.submit();">submit</a></li>
+                                    <li><a href="{cancel_url}" class="button">cancel</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </fort>
+            <fort:section name="thankyou">
+                <div style="float:right; width:400px; height:413px; margin-top:50px; font-size:16px; color:#7e1517;"> 
+                    <h2>Thank you for registering!</h2><br><br>
+                    We have sent an activation link to your registered email address to complete the registration process.
+                    <br>
+                    Please check your email Inbox and follow the instruction.
+                    <br><br>
+                    Important note: Some email providers may treat our email as spam; this may be sent to your junk or bulk mailbox.
+                    </span>
+                    <br /><br />
+                    <a href="{cancel_url}" class="button">ok</a>
+                </div>
+            </fort>
+            <div class="clearDiv"></div>
+        </div>
+        <div class="choppingBoardBottom"></div>
+    </div>

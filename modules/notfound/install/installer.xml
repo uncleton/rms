@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<installation>
+	<install>
+		<title>404</title>
+		<description><![CDATA[404]]></description>
+		<date>1188025211</date>
+		<folder>404</folder>
+		<content></content>
+		<type>modules</type>
+		<tag></tag>
+		<padd></padd>
+		<pedit></pedit>
+		<pdelete></pdelete>
+		<pview></pview>
+		<papprove></papprove>
+		<page file="index">404</page>
+	</install>
+</installation>	
+
