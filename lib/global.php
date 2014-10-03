@@ -1639,7 +1639,7 @@ var $image_size=100;
 		//print_r($uri);
 		if($uri[0]){
 
-			$this->folder(&$params,$uri,$params["alias"]);
+			$this->folder($params,$uri,$params["alias"]);
 
 		//print_r($params);
 		} else {
